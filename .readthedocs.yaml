@@ -1,0 +1,21 @@
+# .readthedocs.yaml
+# Read the Docs配置文件
+# 详细信息请参考: https://docs.readthedocs.io/en/stable/config-file/v2.html
+
+# 必需的配置版本
+version: 2
+
+# 构建文档的方式
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.9"
+
+# 构建文档需要的依赖
+python:
+  install:
+    - requirements: requirements.txt
+
+# 构建文档的格式
+mkdocs:
+  configuration: mkdocs.yml
