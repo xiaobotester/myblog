@@ -22,21 +22,31 @@ theme:
         icon: material/brightness-4
         name: 切换至浅色模式
   features:
+    # 恢复顶部标签导航
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.prune
+    - navigation.tracking
     - search.highlight
     - search.share
+    - search.suggest
     - content.code.copy
+    - content.code.annotate
+    - toc.follow
+    - toc.integrate
   generator: false
 
 extra_css:
-  - stylesheets/extra.css
+  - assets/stylesheets/extra.css
 
 extra_javascript:
-  - javascripts/comments.js
+  - assets/javascripts/comments.js
 
 extra:
   social:
