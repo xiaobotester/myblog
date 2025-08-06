@@ -6,9 +6,7 @@ theme:
   name: readthedocs
   language: zh
 
-nav:
-  - 首页: index.md
-  - 关于: about.md
+# 移除 nav 配置，让 MkDocs 自动根据文件夹结构生成导航
 
 markdown_extensions:
   - admonition
@@ -18,3 +16,4 @@ markdown_extensions:
 
 plugins:
   - search
+  - awesome-pages

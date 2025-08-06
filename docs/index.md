@@ -51,18 +51,4 @@
             <img src="./images/微信公众号搜一搜.jpg" alt="示例图片" width="500" height="250">
         </th>
     </tr>
-    <tr>
-        <tr>
-            <td colspan="2">
-            </td>
-        </tr>
-        <th colspan="2">
-            给你们推荐一个测试知识星球
-        </th>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <img src="./images/知识星球优惠券.jpg" alt="示例图片">
-        </td>
-    </tr>
 </table>
