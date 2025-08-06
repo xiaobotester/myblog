@@ -35,6 +35,22 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/comments.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/xiaobotester/myblog
+  comments:
+    enabled: true
+    # Giscus评论系统配置
+    provider: giscus
+    repo: xiaobotester/myblog
+    repo_id: R_kgDONhqJJw
+    category: General
+    category_id: DIC_kwDONhqJJ84ClGWs
+
 # 移除 nav 配置，让 MkDocs 自动根据文件夹结构生成导航
 
 markdown_extensions:
