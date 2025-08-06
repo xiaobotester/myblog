@@ -79,11 +79,21 @@
     font-style: italic;
 }
 
-/* Giscus 评论框样式调整 */
-.giscus-frame {
+/* Utterances 评论框样式调整 */
+.utterances {
+    max-width: 100% !important;
+    margin-top: 1rem !important;
+}
+
+.utterances-frame {
     border-radius: 8px !important;
     border: 1px solid var(--md-default-fg-color--lightest) !important;
-    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* 深色模式下的Utterances样式 */
+[data-md-color-scheme="slate"] .utterances-frame {
+    border-color: var(--md-default-fg-color--light) !important;
 }
 
 /* 引用块样式优化 */

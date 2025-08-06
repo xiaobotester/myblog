@@ -44,12 +44,11 @@ extra:
       link: https://github.com/xiaobotester/myblog
   comments:
     enabled: true
-    # Giscus评论系统配置
-    provider: giscus
+    # Utterances评论系统配置（更稳定的方案）
+    provider: utterances
     repo: xiaobotester/myblog
-    repo_id: R_kgDONhqJJw
-    category: General
-    category_id: DIC_kwDONhqJJ84ClGWs
+    issue_term: pathname
+    label: "💬 博客评论"
 
 # 移除 nav 配置，让 MkDocs 自动根据文件夹结构生成导航
 
