@@ -1,6 +1,7 @@
 site_name: 我的个人博客
 site_description: 基于MkDocs的个人技术博客
 site_author: 博主
+copyright: Copyright &copy; 2024 博主 - 个人技术博客
 
 theme:
   name: material
@@ -22,12 +23,17 @@ theme:
         name: 切换至浅色模式
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.top
     - search.highlight
     - search.share
     - content.code.copy
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
 
 # 移除 nav 配置，让 MkDocs 自动根据文件夹结构生成导航
 
