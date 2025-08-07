@@ -1,0 +1,33 @@
+/* 评论区样式 */
+#utterances-comment {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* 评论区标题 */
+.utterances-comments-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--md-default-fg-color);
+}
+
+/* 评论框适配深色/浅色模式 */
+.utterances {
+  max-width: 100% !important;
+}
+
+/* 评论区加载提示 */
+.utterances-loading {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--md-default-fg-color--light);
+}
+
+/* 移动设备适配 */
+@media screen and (max-width: 768px) {
+  #utterances-comment {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+}
