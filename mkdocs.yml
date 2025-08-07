@@ -48,9 +48,14 @@ use_directory_urls: true
 # 额外的 CSS 和 JavaScript 文件
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/comments-styles.css
 
 extra_javascript:
   - javascripts/comments.js
+  - javascripts/comments-helper.js
+  - javascripts/back-to-top.js
+  - javascripts/progress-bar.js
+  - javascripts/image-lazy-load.js
 
 # 额外配置
 extra:
