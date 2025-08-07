@@ -1,107 +1,114 @@
-site_name: 我的个人博客
-site_description: 基于MkDocs的个人博客
-site_author: 小博
-copyright: Copyright &copy; 2025 小博测试成长之路 - 个人博客
+# 基本站点信息配置
+site_name: 我的个人博客  # 网站名称，显示在浏览器标签和导航栏中
+site_description: 基于MkDocs的个人博客  # 网站描述，用于SEO和元数据
+site_author: 小博  # 网站作者，用于元数据
+copyright: Copyright &copy; 2025 小博测试成长之路 - 个人博客  # 页脚版权信息
 
+# 主题配置
 theme:
-  name: material
-  language: zh
-  palette:
-    # 浅色模式
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: 切换至深色模式
-    # 深色模式
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: 切换至浅色模式
-  features:
-    # 恢复顶部标签导航
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.expand
-    - navigation.top
-    - navigation.indexes
-    - navigation.instant
-    - navigation.instant.prefetch
-    - navigation.prune
-    - navigation.tracking
-    - search.highlight
-    - search.share
-    - search.suggest
-    - content.code.copy
-    - content.code.annotate
-    - toc.follow
-    - toc.integrate
-  generator: false
+  name: material  # 使用Material主题，这是一个现代化的MkDocs主题
+  language: zh  # 设置网站语言为中文
+  palette:  # 配置颜色方案
+    # 浅色模式配置
+    - scheme: default  # 默认浅色方案
+      primary: indigo  # 主要颜色为靛蓝色
+      accent: indigo  # 强调颜色为靛蓝色
+      toggle:  # 主题切换按钮配置
+        icon: material/brightness-7  # 使用亮度图标
+        name: 切换至深色模式  # 切换按钮提示文本
+    # 深色模式配置
+    - scheme: slate  # 深色方案
+      primary: indigo  # 主要颜色为靛蓝色
+      accent: indigo  # 强调颜色为靛蓝色
+      toggle:  # 主题切换按钮配置
+        icon: material/brightness-4  # 使用亮度图标
+        name: 切换至浅色模式  # 切换按钮提示文本
+  features:  # 启用的特性列表
+    # 导航相关特性
+    - navigation.tabs  # 在顶部显示主要部分的标签
+    - navigation.tabs.sticky  # 使顶部标签在滚动时保持可见
+    - navigation.sections  # 将导航分为可折叠的部分
+    - navigation.expand  # 默认展开所有导航部分
+    - navigation.top  # 添加返回顶部按钮
+    - navigation.indexes  # 支持章节索引页面
+    - navigation.instant  # 启用即时加载（不刷新整个页面）
+    - navigation.instant.prefetch  # 预加载链接页面以加快导航
+    - navigation.prune  # 仅加载当前页面所需的导航元素，提高性能
+    - navigation.tracking  # 在URL中跟踪当前位置
+    # 搜索相关特性
+    - search.highlight  # 高亮搜索结果
+    - search.share  # 允许分享搜索结果
+    - search.suggest  # 显示搜索建议
+    # 内容相关特性
+    - content.code.copy  # 为代码块添加复制按钮
+    - content.code.annotate  # 支持代码注释
+    # 目录相关特性
+    - toc.follow  # 目录跟随滚动
+    - toc.integrate  # 将目录集成到导航面板中
+  generator: true  # 隐藏"使用MkDocs生成"的页脚信息
 
-# 配置静态文件
-use_directory_urls: true
+# URL配置
+use_directory_urls: true  # 使用目录风格的URL（去掉.html后缀）
 
 # 额外的 CSS 和 JavaScript 文件
-extra_css:
-  - assets/stylesheets/extra.css
-  - assets/stylesheets/comments-styles.css
-  - assets/stylesheets/placeholder-styles.css
-extra_javascript:
-  - assets/javascripts/utterances-cache.js
-  - assets/javascripts/utterances.js
-  - assets/javascripts/comments.js
-  - assets/javascripts/comments-helper.js
-  - assets/javascripts/progress-bar.js
-  - assets/javascripts/image-lazy-load.js
-  - assets/javascripts/back-to-top.js
+extra_css:  # 添加自定义CSS文件
+  - assets/stylesheets/extra.css  # 自定义样式
+  - assets/stylesheets/comments-styles.css  # 评论系统样式
+  - assets/stylesheets/placeholder-styles.css  # 占位符样式
+extra_javascript:  # 添加自定义JavaScript文件
+  - assets/javascripts/utterances-cache.js  # Utterances评论缓存脚本
+  - assets/javascripts/utterances.js  # Utterances评论主脚本
+  - assets/javascripts/comments.js  # 评论功能脚本
+  - assets/javascripts/comments-helper.js  # 评论辅助脚本
+  - assets/javascripts/progress-bar.js  # 阅读进度条脚本
+  - assets/javascripts/image-lazy-load.js  # 图片懒加载脚本
+  - assets/javascripts/back-to-top.js  # 返回顶部按钮脚本
 
 
 # 额外配置
 extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/xiaobotester/myblog
-  comments:
-    enabled: true
-    # Utterances评论系统配置（更稳定的方案）
-    provider: utterances
-    repo: xiaobotester/myblog
-    issue_term: pathname
-    label: "💬 博客评论"
+  social:  # 社交媒体链接
+    - icon: fontawesome/brands/github  # GitHub图标
+      link: https://github.com/xiaobotester/myblog  # GitHub链接
+  comments:  # 评论系统配置
+    enabled: true  # 启用评论功能
+    # Utterances评论系统配置
+    provider: utterances  # 使用Utterances作为评论提供者
+    repo: xiaobotester/myblog  # 存储评论的GitHub仓库
+    issue_term: pathname  # 使用页面路径作为issue标识
+    label: "💬 博客评论"  # 评论issue的标签
 
 
+# Markdown扩展配置
 markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - attr_list
-  - md_in_html
-  - toc:
-      permalink: true
+  - admonition  # 支持提示、警告等特殊块
+  - pymdownx.details  # 支持可折叠的详细信息块
+  - pymdownx.superfences  # 支持嵌套代码块和内容标签
+  - pymdownx.highlight:  # 代码高亮配置
+      anchor_linenums: true  # 为代码行添加锚点
+  - pymdownx.inlinehilite  # 支持行内代码高亮
+  - pymdownx.snippets  # 支持代码片段引用
+  - pymdownx.tabbed:  # 支持选项卡式内容
+      alternate_style: true  # 使用替代样式
+  - pymdownx.tasklist:  # 支持任务列表
+      custom_checkbox: true  # 使用自定义复选框样式
+  - pymdownx.emoji:  # 支持表情符号
+      emoji_index: !!python/name:material.extensions.emoji.twemoji  # 使用Twemoji索引
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg  # 使用SVG生成表情
+  - attr_list  # 支持HTML属性列表
+  - md_in_html  # 支持HTML中的Markdown
+  - toc:  # 目录配置
+      permalink: true  # 为标题添加永久链接
 
+# 插件配置
 plugins:
-  - search:
-      lang: zh
-  - awesome-pages
-  - git-revision-date-localized:
-      type: datetime
-      timezone: Asia/Shanghai
-      locale: zh
-      fallback_to_build_date: true
-  - minify:
-      minify_html: true
+  - search:  # 搜索插件
+      lang: zh  # 设置搜索语言为中文
+  - awesome-pages  # 增强页面导航管理
+  - git-revision-date-localized:  # 显示页面最后修改日期
+      type: datetime  # 显示为日期时间格式
+      timezone: Asia/Shanghai  # 使用上海时区
+      locale: zh  # 使用中文本地化
+      fallback_to_build_date: true  # 如果无法获取Git日期则使用构建日期
+  - minify:  # 压缩输出文件
+      minify_html: true  # 压缩HTML文件
