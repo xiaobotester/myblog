@@ -1,7 +1,7 @@
 site_name: 我的个人博客
-site_description: 基于MkDocs的个人技术博客
-site_author: 博主
-copyright: Copyright &copy; 2024 博主 - 个人技术博客
+site_description: 基于MkDocs的个人博客
+site_author: 小博
+copyright: Copyright &copy; 2025 小博测试成长之路 - 个人博客
 
 theme:
   name: material
@@ -50,12 +50,6 @@ extra_css:
   - stylesheets/extra.css
   - stylesheets/comments-styles.css
 
-extra_javascript:
-  - javascripts/comments.js
-  - javascripts/comments-helper.js
-  - javascripts/back-to-top.js
-  - javascripts/progress-bar.js
-  - javascripts/image-lazy-load.js
 
 # 额外配置
 extra:
@@ -70,7 +64,6 @@ extra:
     issue_term: pathname
     label: "💬 博客评论"
 
-# 移除 nav 配置，让 MkDocs 自动根据文件夹结构生成导航
 
 markdown_extensions:
   - admonition
