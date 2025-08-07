@@ -197,8 +197,3 @@ DELETE /索引名称
 
 ---
 
-## 🔗 相关链接
-
-- [Elasticsearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
-- [Query DSL 参考](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
-- [删除 API 参考](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html)
