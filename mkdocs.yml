@@ -45,18 +45,12 @@ theme:
 # 配置静态文件
 use_directory_urls: true
 
-# 配置静态文件复制
-docs_dir: docs
-site_dir: site
-extra_files:
-  - assets
-
 # 额外的 CSS 和 JavaScript 文件
 extra_css:
-  - assets/stylesheets/extra.css
+  - docs/assets/stylesheets/extra.css
 
 extra_javascript:
-  - assets/javascripts/comments.js
+  - docs/assets/javascripts/comments.js
 
 # 额外配置
 extra:
