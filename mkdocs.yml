@@ -47,10 +47,10 @@ use_directory_urls: true
 
 # 额外的 CSS 和 JavaScript 文件
 extra_css:
-  - docs/assets/stylesheets/extra.css
+  - stylesheets/extra.css
 
 extra_javascript:
-  - docs/assets/javascripts/comments.js
+  - javascripts/comments.js
 
 # 额外配置
 extra:

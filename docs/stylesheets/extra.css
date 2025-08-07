@@ -1,0 +1,398 @@
+/* 隐藏底部的 "Made with Material for MkDocs" 链接 */
+.md-footer-meta__inner {
+    display: none !important;
+}
+
+/* 或者只隐藏特定的链接文本 */
+.md-footer-meta__inner .md-footer-meta__source {
+    display: none !important;
+}
+
+/* 首页样式优化 */
+.md-content h1:first-child {
+    background: linear-gradient(135deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* 卡片网格样式 */
+.grid.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.grid.cards > div {
+    background: var(--md-default-bg-color);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.grid.cards > div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: var(--md-primary-fg-color);
+}
+
+/* 表格样式优化 */
+.md-typeset table:not([class]) {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.md-typeset table:not([class]) th {
+    background: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+    font-weight: 600;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+    background: var(--md-default-fg-color--lightest);
+}
+
+/* 评论区样式 */
+#comments {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--md-default-fg-color--lightest);
+}
+
+#comments h3 {
+    color: var(--md-primary-fg-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#comments p {
+    color: var(--md-default-fg-color--light);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Utterances 评论框样式调整 */
+.utterances {
+    max-width: 100% !important;
+    margin-top: 1rem !important;
+}
+
+.utterances-frame {
+    border-radius: 8px !important;
+    border: 1px solid var(--md-default-fg-color--lightest) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* 深色模式下的Utterances样式 */
+[data-md-color-scheme="slate"] .utterances-frame {
+    border-color: var(--md-default-fg-color--light) !important;
+}
+
+/* 引用块样式优化 */
+.md-typeset blockquote {
+    border-left: 4px solid var(--md-primary-fg-color);
+    background: var(--md-default-fg-color--lightest);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+}
+
+/* 代码块样式优化 */
+.md-typeset .highlight {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 标签样式 */
+.md-typeset .md-tag {
+    background: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+    border-radius: 12px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 0.2rem;
+    display: inline-block;
+}
+
+/* RSS 链接样式 */
+.md-footer-social a[href*="feed_rss"] {
+    color: #ff6600 !important;
+}
+
+/* 响应式优化 */
+@media screen and (max-width: 768px) {
+    .grid.cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .md-content h1:first-child {
+        font-size: 1.8rem;
+    }
+    
+    #comments {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+}
+
+/* 深色模式下的特殊样式 */
+[data-md-color-scheme="slate"] .grid.cards > div {
+    background: var(--md-code-bg-color);
+    border-color: var(--md-default-fg-color--lightest);
+}
+
+[data-md-color-scheme="slate"] .grid.cards > div:hover {
+    border-color: var(--md-accent-fg-color);
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.md-content__inner > * {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===== 导航栏高度优化 ===== */
+
+/* 顶部导航栏高度优化 */
+.md-header {
+    height: auto;
+    min-height: 48px; /* 降低最小高度 */
+}
+
+.md-header__inner {
+    height: auto;
+    min-height: 48px; /* 降低最小高度 */
+    padding: 0.2rem; /* 减少内边距 */
+}
+
+/* 标题栏高度优化 */
+.md-header__title {
+    height: 2rem;
+    line-height: 2rem;
+}
+
+/* 搜索框高度优化 */
+.md-search__inner {
+    height: 1.8rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.md-search__input {
+    height: 1.8rem;
+    line-height: 1.8rem;
+}
+
+/* 标签导航栏高度优化 */
+.md-tabs {
+    min-height: 35px; /* 降低标签栏高度 */
+    height: auto;
+    overflow: visible;
+    box-shadow: 0 0 0.1rem rgba(0,0,0,0.1), 0 0.1rem 0.2rem rgba(0,0,0,0.2);
+}
+
+.md-tabs__list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.6rem;
+    min-height: 35px; /* 降低标签栏高度 */
+    align-items: center; /* 垂直居中 */
+}
+
+.md-tabs__item {
+    height: 35px; /* 降低标签项高度 */
+    padding-right: 0.6rem;
+    min-width: auto;
+    margin-bottom: 0;
+}
+
+.md-tabs__link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.4rem 0.6rem; /* 减少内边距 */
+    white-space: nowrap;
+    border-radius: 0.2rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* 当导航项换行时的样式调整 - 减少高度 */
+.md-tabs__list:has(.md-tabs__item:nth-child(n+6)) {
+    min-height: 70px; /* 降低换行后的高度 */
+}
+
+.md-tabs__list:has(.md-tabs__item:nth-child(n+10)) {
+    min-height: 105px; /* 降低多行后的高度 */
+}
+
+/* 侧边栏导航优化 */
+.md-nav {
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.md-nav__title {
+    font-weight: 600;
+    color: var(--md-primary-fg-color);
+}
+
+.md-nav__item {
+    padding: 0.2rem 0;
+}
+
+.md-nav__link {
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.md-nav__link:hover {
+    background-color: var(--md-accent-fg-color--transparent);
+    color: var(--md-accent-fg-color);
+}
+
+/* 侧边栏滚动优化 */
+.md-sidebar__scrollwrap {
+    scrollbar-width: thin;
+    scrollbar-color: var(--md-default-fg-color--lighter) transparent;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar {
+    width: 4px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+    background-color: var(--md-default-fg-color--lighter);
+    border-radius: 2px;
+}
+
+/* 导航层级缩进优化 */
+.md-nav .md-nav {
+    padding-left: 0.8rem;
+}
+
+.md-nav .md-nav .md-nav {
+    padding-left: 1.6rem;
+}
+
+/* 移动端导航优化 */
+@media screen and (max-width: 76.1875em) {
+    .md-nav--primary .md-nav__title {
+        background-color: var(--md-primary-fg-color);
+        color: var(--md-primary-bg-color);
+        height: 2.4rem; /* 降低移动端标题高度 */
+        line-height: 2.4rem; /* 降低移动端标题行高 */
+    }
+    
+    .md-nav--primary .md-nav__item {
+        border-top: 1px solid var(--md-default-fg-color--lightest);
+    }
+    
+    .md-tabs::after {
+        display: none;
+    }
+}
+
+/* 当前页面高亮 */
+.md-nav__link--active {
+    color: var(--md-primary-fg-color) !important;
+    font-weight: 600;
+}
+
+.md-nav__item .md-nav__link--active {
+    background-color: var(--md-primary-fg-color--light);
+}
+
+/* 导航项间距优化 */
+.md-tabs__item {
+    margin-bottom: 0.1rem; /* 减少间距 */
+}
+
+.md-tabs__item:last-child {
+    margin-bottom: 0;
+}
+
+/* 响应式优化 - 确保在不同屏幕尺寸下都能正常显示 */
+@media screen and (max-width: 1200px) {
+    .md-tabs__link {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.5rem; /* 减少内边距 */
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .md-tabs__link {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.4rem; /* 减少内边距 */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .md-tabs__link {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.3rem; /* 减少内边距 */
+    }
+    
+    .md-tabs__list {
+        padding: 0 0.3rem;
+    }
+    
+    .md-tabs__item {
+        padding-right: 0.3rem;
+    }
+}
+
+/* 修复换行时的内容区域偏移 */
+.md-main {
+    margin-top: 0;
+}
+
+.md-main__inner {
+    margin-top: 0;
+    padding-top: 0.5rem; /* 减少顶部内边距 */
+}
+
+/* 当导航换行时，调整页面布局 */
+@media screen and (min-width: 76.25em) {
+    .md-main {
+        margin-left: 12.1rem;
+    }
+}
+
+/* 优化顶部导航栏和标签栏之间的间距 */
+.md-header__inner {
+    margin-bottom: 0;
+}
+
+/* 优化标签栏和内容之间的间距 */
+.md-tabs {
+    margin-bottom: 0;
+}
+
+/* 优化标签栏内部元素的垂直对齐 */
+.md-tabs__link {
+    line-height: 1.2;
+}
