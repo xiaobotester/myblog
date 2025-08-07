@@ -1,0 +1,94 @@
+/* 评论框占位符样式 */
+.utterances-placeholder {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  background: var(--md-default-bg-color);
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.placeholder-header {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding: 0;
+}
+
+.placeholder-tabs {
+  display: flex;
+  background: var(--md-code-bg-color);
+  border-radius: 8px 8px 0 0;
+}
+
+.placeholder-tabs .tab {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--md-default-fg-color--light);
+  cursor: not-allowed;
+  border-bottom: 2px solid transparent;
+}
+
+.placeholder-tabs .tab.active {
+  color: var(--md-primary-fg-color);
+  border-bottom-color: var(--md-primary-fg-color);
+  background: var(--md-default-bg-color);
+}
+
+.placeholder-body {
+  padding: 16px;
+}
+
+.placeholder-body textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  cursor: not-allowed;
+  box-sizing: border-box;
+}
+
+.placeholder-body textarea::placeholder {
+  color: var(--md-default-fg-color--lighter);
+}
+
+.placeholder-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.placeholder-footer small {
+  color: var(--md-default-fg-color--light);
+  font-size: 12px;
+}
+
+.placeholder-footer button {
+  background: var(--md-primary-fg-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* 深色模式适配 */
+[data-md-color-scheme="slate"] .utterances-placeholder {
+  background: var(--md-default-bg-color);
+  border-color: var(--md-default-fg-color--lightest);
+}
+
+[data-md-color-scheme="slate"] .placeholder-body textarea {
+  background: var(--md-code-bg-color);
+  border-color: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color);
+}

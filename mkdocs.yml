@@ -49,7 +49,9 @@ use_directory_urls: true
 extra_css:
   - assets/stylesheets/extra.css
   - assets/stylesheets/comments-styles.css
+  - assets/stylesheets/placeholder-styles.css
 extra_javascript:
+  - assets/javascripts/utterances-cache.js
   - assets/javascripts/utterances.js
   - assets/javascripts/comments.js
   - assets/javascripts/comments-helper.js

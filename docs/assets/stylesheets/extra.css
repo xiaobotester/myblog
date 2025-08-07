@@ -1,9 +1,9 @@
-/* 隐藏底部的 "Made with Material for MkDocs" 链接 */
-.md-footer-meta__inner {
+/* 只隐藏底部的 "Made with Material for MkDocs" 链接，保留其他元素 */
+.md-footer-meta__inner .md-footer-copyright {
     display: none !important;
 }
 
-/* 或者只隐藏特定的链接文本 */
+/* 隐藏特定的链接文本 */
 .md-footer-meta__inner .md-footer-meta__source {
     display: none !important;
 }

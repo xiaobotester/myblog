@@ -1,22 +1,23 @@
-# es常见用法
+# Elasticsearch 常见用法
 
+本文档整理了 Elasticsearch 的常用操作和查询方法，包括数据查询、删除等核心功能。
 
-## 查询数据
-### 指定字段查询
+---
 
-#### match查询：
+## 📊 数据查询
 
-用于全文本搜索，可以用于字符串字段。
-它会对输入的文本进行分词，生成词条，然后匹配文档中包含这些词条的情况。
-适用于自然语言查询，会考虑词汇和语法，以更灵活地匹配文本。
-term查询：
+### 1. 指定字段查询
 
-用于精确匹配，通常用于关键字字段或不需要分词的字段。
-它不会分析输入的文本，而是直接将整个输入作为一个词条与文档中的字段进行匹配。
-适用于需要精确匹配的情况，例如数字、日期或关键字。
+#### Match 查询（全文搜索）
 
-```
-GET /es索引名称/_doc/_search
+**特点：**
+- 用于全文本搜索，适用于字符串字段
+- 对输入文本进行分词处理，生成词条进行匹配
+- 适用于自然语言查询，支持灵活的文本匹配
+
+**语法示例：**
+```json
+GET /索引名称/_search
 {
   "query": {
     "bool": {
@@ -29,13 +30,39 @@ GET /es索引名称/_doc/_search
 }
 ```
 
+#### Term 查询（精确匹配）
 
-###  模糊查询
-注意：Can only use prefix queries on keyword, text and wildcard fields - not on [xxx field] which is of type [integer]
+**特点：**
+- 用于精确匹配，适用于关键字字段或不需要分词的字段
+- 不对输入文本进行分析，直接作为词条匹配
+- 适用于数字、日期、关键字等精确匹配场景
 
-#### 单字段模糊查询
+**语法示例：**
+```json
+GET /索引名称/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "term": { "status": "active" } },
+        { "term": { "category_id": 123 } }
+      ]
+    }
+  }
+}
 ```
-GET /es索引名称/_search
+
+### 2. 模糊查询
+
+!!! warning "注意事项"
+    前缀查询只能用于 `keyword`、`text` 和 `wildcard` 字段类型，不能用于 `integer` 等数值类型字段。
+
+#### 单字段前缀查询
+
+**适用场景：** 搜索以特定前缀开头的文档
+
+```json
+GET /索引名称/_search
 {
   "query": {
     "prefix": {
@@ -45,10 +72,12 @@ GET /es索引名称/_search
 }
 ```
 
+#### 多字段前缀查询
 
-#### 多个字段结合的模糊查询
-```
-GET /es索引名称/_search
+**适用场景：** 在多个字段中搜索相同前缀
+
+```json
+GET /索引名称/_search
 {
   "query": {
     "bool": {
@@ -69,16 +98,42 @@ GET /es索引名称/_search
 }
 ```
 
- 
-## 删除数据
-### 按ID(_id)删除单个文档
-```
-DELETE /es索引名称/_doc/es里面某条记录对应的_id字段
+#### 通配符查询
+
+**适用场景：** 使用通配符进行模糊匹配
+
+```json
+GET /索引名称/_search
+{
+  "query": {
+    "wildcard": {
+      "field_name": "*pattern*"
+    }
+  }
+}
 ```
 
-### 按查询条件删除多个文档
+---
+
+## 🗑️ 数据删除
+
+### 1. 按 ID 删除单个文档
+
+**语法：**
+```http
+DELETE /索引名称/_doc/{document_id}
 ```
-POST /es索引名称/_delete_by_query
+
+**示例：**
+```http
+DELETE /my_index/_doc/1
+```
+
+### 2. 按查询条件删除多个文档
+
+**语法：**
+```json
+POST /索引名称/_delete_by_query
 {
   "query": {
     "term": {
@@ -86,5 +141,64 @@ POST /es索引名称/_delete_by_query
     }
   }
 }
-
 ```
+
+**示例：**
+```json
+POST /my_index/_delete_by_query
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "term": { "status": "inactive" } },
+        { "range": { "created_date": { "lt": "2023-01-01" } } }
+      ]
+    }
+  }
+}
+```
+
+### 3. 删除整个索引
+
+!!! danger "危险操作"
+    此操作会删除整个索引及其所有数据，请谨慎使用！
+
+```http
+DELETE /索引名称
+```
+
+---
+
+## 💡 最佳实践
+
+### 查询优化建议
+
+1. **使用合适的查询类型**
+   - 精确匹配使用 `term` 查询
+   - 全文搜索使用 `match` 查询
+   - 范围查询使用 `range` 查询
+
+2. **合理使用布尔查询**
+   - `must`: 必须匹配（AND 逻辑）
+   - `should`: 应该匹配（OR 逻辑）
+   - `must_not`: 必须不匹配（NOT 逻辑）
+
+3. **性能考虑**
+   - 避免在大量数据上使用通配符查询
+   - 合理设置查询的 `size` 参数
+   - 使用过滤器（`filter`）而非查询来提高性能
+
+### 删除操作注意事项
+
+1. **备份重要数据** - 删除操作不可逆
+2. **测试查询条件** - 先用搜索验证条件是否正确
+3. **分批删除** - 大量数据删除时建议分批进行
+4. **监控性能** - 删除操作可能影响集群性能
+
+---
+
+## 🔗 相关链接
+
+- [Elasticsearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
+- [Query DSL 参考](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
+- [删除 API 参考](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete.html)
