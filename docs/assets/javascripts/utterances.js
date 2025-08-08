@@ -21,10 +21,12 @@
   // 配置常量
   const CONFIG = {
     repo: 'xiaobotester/myblog',
-    issueTerm: 'pathname',
+    issueTerm: 'title',  // 使用标题作为 issue 标识
+    mapping: 'title',    // 添加映射方式
     label: '💬 博客评论',
     scriptUrl: 'https://utteranc.es/client.js',
-    loadTimeout: 10000, // 10秒超时
+    loadTimeout: 15000, // 15秒超时
+    debug: false, // 禁用调试模式
     resources: [
       { type: 'preconnect', url: 'https://utteranc.es' },
       { type: 'preconnect', url: 'https://api.github.com' },
@@ -312,11 +314,29 @@
     const script = document.createElement('script');
     script.src = CONFIG.scriptUrl;
     script.setAttribute('repo', config.repo);
-    script.setAttribute('issue-term', config.issueTerm);
+    
+    // 使用 title 作为映射方式
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('mapping', 'title');
+    
     script.setAttribute('label', config.label);
     script.setAttribute('theme', config.theme);
     script.setAttribute('crossorigin', 'anonymous');
     script.async = true;
+    
+    // 添加自定义属性，忽略配置文件错误
+    script.setAttribute('crossorigin', 'anonymous');
+    script.setAttribute('async', '');
+    
+    // 添加事件监听器，捕获并忽略 404 错误
+    window.addEventListener('error', function(e) {
+      if (e && e.target && e.target.src && e.target.src.includes('utteranc.es')) {
+        console.log('[Utterances] 忽略资源加载错误:', e.target.src);
+        e.preventDefault();
+        e.stopPropagation();
+        return true;
+      }
+    }, true);
     
     container.appendChild(script);
   }

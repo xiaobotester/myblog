@@ -64,6 +64,12 @@ extra_javascript:  # 添加自定义JavaScript文件
   - assets/javascripts/image-lazy-load.js  # 图片懒加载脚本
   - assets/javascripts/back-to-top.js  # 返回顶部按钮脚本
 
+# 添加安装指南到导航
+nav:
+  - 首页: index.md
+  - 评论系统:
+    - Utterances安装指南: utterances-installation-guide/index.md
+
 
 # 额外配置
 extra:
@@ -75,7 +81,7 @@ extra:
     # Utterances评论系统配置
     provider: utterances  # 使用Utterances作为评论提供者
     repo: xiaobotester/myblog  # 存储评论的GitHub仓库
-    issue_term: pathname  # 使用页面路径作为issue标识
+    issue_term: title  # 使用页面标题作为issue标识
     label: "💬 博客评论"  # 评论issue的标签
 
 
