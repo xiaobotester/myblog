@@ -64,11 +64,7 @@ extra_javascript:  # 添加自定义JavaScript文件
   - assets/javascripts/image-lazy-load.js  # 图片懒加载脚本
   - assets/javascripts/back-to-top.js  # 返回顶部按钮脚本
 
-# 添加安装指南到导航
-nav:
-  - 首页: index.md
-  - 评论系统:
-    - Utterances设置指南: utterances-setup-guide.md
+# 自动导航配置 - MkDocs 会根据 docs 目录结构自动生成导航
 
 
 # 额外配置
