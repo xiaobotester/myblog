@@ -45,7 +45,7 @@ theme:
     # 目录相关特性
     - toc.follow  # 目录跟随滚动
     - toc.integrate  # 将目录集成到导航面板中
-  generator: true  # 隐藏"使用MkDocs生成"的页脚信息
+  generator: false  # 不显示“Made with Material for MkDocs”
 
 # URL配置
 use_directory_urls: true  # 使用目录风格的URL（去掉.html后缀）
@@ -56,7 +56,7 @@ extra_css:  # 添加自定义CSS文件
   - assets/stylesheets/comments-styles.css  # 评论系统样式
   - assets/stylesheets/placeholder-styles.css  # 占位符样式
 extra_javascript:  # 添加自定义JavaScript文件
-  - assets/javascripts/utterances.js  # 简化版Utterances评论脚本
+  - assets/javascripts/utterances.js  # Utterances评论脚本
   - assets/javascripts/progress-bar.js  # 阅读进度条脚本
   - assets/javascripts/image-lazy-load.js  # 图片懒加载脚本
   - assets/javascripts/back-to-top.js  # 返回顶部按钮脚本
@@ -66,9 +66,6 @@ extra_javascript:  # 添加自定义JavaScript文件
 
 # 额外配置
 extra:
-  social:  # 社交媒体链接
-    - icon: fontawesome/brands/github  # GitHub图标
-      link: https://github.com/xiaobotester/myblog  # GitHub链接
   comments:  # 评论系统配置
     enabled: true  # 启用评论功能
     # Utterances评论系统配置
