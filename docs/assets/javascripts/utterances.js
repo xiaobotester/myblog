@@ -13,41 +13,53 @@ const CONFIG = {
 
 // 初始化评论系统
 function initComments() {
-  // 等待页面加载完成
+  // 等待页面加载完成，稍作延迟以便主题内置评论优先生效
+  const delayedSetup = () => setTimeout(setupComments, 120);
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupComments);
+    document.addEventListener('DOMContentLoaded', delayedSetup);
   } else {
-    setupComments();
+    delayedSetup();
   }
 }
 
 // 设置评论区
 function setupComments() {
   // 查找内容区域
-  const contentArea = document.querySelector('.md-content__inner') || 
-                     document.querySelector('article') || 
-                     document.querySelector('main');
-  
-  if (!contentArea) {
+  const contentArea = document.querySelector('.md-content__inner') ||
+                      document.querySelector('article') ||
+                      document.querySelector('main');
+
+  if (!contentArea) return;
+
+  // 如果主题已挂载内置评论或页面已存在 utterances iframe，则不再注入，避免重复
+  const materialComments = document.querySelector('[data-md-component="comments"]');
+  const existingIframe = contentArea.querySelector('iframe[src*="utteranc.es"]');
+
+  if (materialComments || existingIframe) {
+    // 若存在我们旧的容器但本页已有评论（主题或现存 iframe），移除旧容器以防空容器占位
+    const stale = document.getElementById('utterances-comment');
+    if (stale && (materialComments || existingIframe)) {
+      // 仅当不是我们自己刚刚渲染的 iframe 时清理
+      const iframeInsideStale = stale.querySelector('iframe[src*="utteranc.es"]');
+      if (!iframeInsideStale) stale.remove();
+    }
     return;
   }
-  
-  // 移除旧的评论区
+
+  // 移除旧的评论区（准备重新创建）
   const oldComments = document.getElementById('utterances-comment');
-  if (oldComments) {
-    oldComments.remove();
-  }
-  
+  if (oldComments) oldComments.remove();
+
   // 创建评论区容器
   const container = document.createElement('div');
   container.id = 'utterances-comment';
   container.className = 'utterances-container';
-  
+
   // 创建标题
   const title = document.createElement('h2');
   title.textContent = '💬 文章评论';
   title.className = 'utterances-title';
-  
+
   // 创建加载提示
   const loadingDiv = document.createElement('div');
   loadingDiv.innerHTML = `
@@ -71,28 +83,28 @@ function setupComments() {
       ">手动加载</button>
     </div>
   `;
-  
+
   container.appendChild(title);
   container.appendChild(loadingDiv);
   contentArea.appendChild(container);
-  
+
   // 延迟加载评论
-  setTimeout(loadUtterances, 1000);
+  setTimeout(loadUtterances, 400);
 }
 
 // 加载 Utterances
 function loadUtterances() {
   const container = document.getElementById('utterances-comment');
-  if (!container) {
-    return;
-  }
-  
+  if (!container) return;
+
+  // 若已存在 iframe（可能由主题或之前加载产生），避免再次注入
+  const anyExistingIframe = document.querySelector('iframe[src*="utteranc.es"]');
+  if (anyExistingIframe) return;
+
   // 移除加载提示
   const loadingDiv = container.querySelector('div');
-  if (loadingDiv) {
-    loadingDiv.remove();
-  }
-  
+  if (loadingDiv) loadingDiv.remove();
+
   // 创建 Utterances 脚本
   const script = document.createElement('script');
   script.src = 'https://utteranc.es/client.js';
@@ -102,12 +114,12 @@ function loadUtterances() {
   script.setAttribute('theme', CONFIG.theme);
   script.setAttribute('crossorigin', 'anonymous');
   script.async = true;
-  
+
   // 错误处理
   script.onerror = function() {
     showError(container, '评论系统加载失败，请检查网络连接');
   };
-  
+
   container.appendChild(script);
 }
 
@@ -148,7 +160,8 @@ initComments();
 // 适配 MkDocs Material 的 Instant Navigation：每次文档切换后重新挂载评论
 if (window.document$ && typeof window.document$.subscribe === 'function') {
   window.document$.subscribe(() => {
-    setupComments();
+    // 延迟以等待主题内置评论（若启用）先完成挂载
+    setTimeout(setupComments, 120);
   });
 }
 
