@@ -145,6 +145,13 @@ window.loadUtterances = loadUtterances;
 // 立即初始化
 initComments();
 
+// 适配 MkDocs Material 的 Instant Navigation：每次文档切换后重新挂载评论
+if (window.document$ && typeof window.document$.subscribe === 'function') {
+  window.document$.subscribe(() => {
+    setupComments();
+  });
+}
+
 // 监听主题变化
 document.addEventListener('DOMContentLoaded', function() {
   const observer = new MutationObserver(function(mutations) {
