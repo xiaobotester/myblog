@@ -1,4 +1,6 @@
-{
+{"origins": [
+    "https://xiaobotester.github.io"
+  ],
   "repo": "xiaobotester/myblog",
   "issueTerm": "pathname",
   "mapping": "pathname",
