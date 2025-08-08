@@ -1,0 +1,8 @@
+{
+  "repo": "xiaobotester/myblog",
+  "issueTerm": "pathname",
+  "mapping": "pathname",
+  "label": "💬 博客评论",
+  "theme": "github-light",
+  "crossorigin": "anonymous"
+} 

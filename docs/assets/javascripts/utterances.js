@@ -21,8 +21,8 @@
   // 配置常量
   const CONFIG = {
     repo: 'xiaobotester/myblog',
-    issueTerm: 'title',  // 使用标题作为 issue 标识
-    mapping: 'title',    // 添加映射方式
+    issueTerm: 'pathname',  // 使用路径作为 issue 标识
+    mapping: 'pathname',    // 添加映射方式
     label: '💬 博客评论',
     scriptUrl: 'https://utteranc.es/client.js',
     loadTimeout: 15000, // 15秒超时
@@ -315,9 +315,9 @@
     script.src = CONFIG.scriptUrl;
     script.setAttribute('repo', config.repo);
     
-    // 使用 title 作为映射方式
-    script.setAttribute('issue-term', 'title');
-    script.setAttribute('mapping', 'title');
+    // 使用 pathname 作为映射方式
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('mapping', 'pathname');
     
     script.setAttribute('label', config.label);
     script.setAttribute('theme', config.theme);
