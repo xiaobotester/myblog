@@ -1,7 +1,0 @@
-{
-  "origins": ["https://xiaobotester.github.io", "http://localhost:8000"],
-  "allowComments": true,
-  "issueTerm": "title",
-  "label": "💬 博客评论",
-  "theme": "github-light"
-}
