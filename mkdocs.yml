@@ -56,10 +56,7 @@ extra_css:  # 添加自定义CSS文件
   - assets/stylesheets/comments-styles.css  # 评论系统样式
   - assets/stylesheets/placeholder-styles.css  # 占位符样式
 extra_javascript:  # 添加自定义JavaScript文件
-  - assets/javascripts/utterances-cache.js  # Utterances评论缓存脚本
-  - assets/javascripts/utterances.js  # Utterances评论主脚本
-  - assets/javascripts/comments.js  # 评论功能脚本
-  - assets/javascripts/comments-helper.js  # 评论辅助脚本
+  - assets/javascripts/utterances.js  # 简化版Utterances评论脚本
   - assets/javascripts/progress-bar.js  # 阅读进度条脚本
   - assets/javascripts/image-lazy-load.js  # 图片懒加载脚本
   - assets/javascripts/back-to-top.js  # 返回顶部按钮脚本
