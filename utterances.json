@@ -1,5 +1,6 @@
-{"origins": [
-    "https://xiaobotester.github.io", "http://127.0.0.1:8000"
+{
+  "origins": [
+    "https://xiaobotester.github.io"
   ],
   "repo": "xiaobotester/myblog",
   "issueTerm": "pathname",
@@ -7,4 +8,4 @@
   "label": "💬 博客评论",
   "theme": "github-light",
   "crossorigin": "anonymous"
-} 
+}
