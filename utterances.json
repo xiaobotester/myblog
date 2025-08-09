@@ -1,5 +1,5 @@
 {"origins": [
-    "https://xiaobotester.github.io"
+    "https://xiaobotester.github.io", "http://127.0.0.1:8000"
   ],
   "repo": "xiaobotester/myblog",
   "issueTerm": "pathname",

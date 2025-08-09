@@ -11,6 +11,23 @@ const CONFIG = {
   theme: 'github-light'
 };
 
+// 去重与清理，确保页面上最多只有一个 Utterances，且与内置评论不冲突
+function cleanupAndDedupe() {
+  const materialComments = document.querySelector('[data-md-component="comments"]');
+  // 如果主题已渲染内置评论，移除我们自定义的容器，避免双评论
+  if (materialComments) {
+    document.querySelectorAll('#utterances-comment').forEach(n => n.remove());
+  }
+  // 无论如何，都确保页面上至多只有一个 utterances iframe
+  const iframes = Array.from(document.querySelectorAll('iframe[src*="utteranc.es"]'));
+  if (iframes.length > 1) {
+    // 保留第一个，移除多余的
+    for (let i = 1; i < iframes.length; i++) {
+      iframes[i].remove();
+    }
+  }
+}
+
 // 初始化评论系统
 function initComments() {
   // 等待页面加载完成，稍作延迟以便主题内置评论优先生效
@@ -24,6 +41,7 @@ function initComments() {
 
 // 设置评论区
 function setupComments() {
+  cleanupAndDedupe();
   // 查找内容区域
   const contentArea = document.querySelector('.md-content__inner') ||
                       document.querySelector('article') ||
@@ -33,16 +51,11 @@ function setupComments() {
 
   // 如果主题已挂载内置评论或页面已存在 utterances iframe，则不再注入，避免重复
   const materialComments = document.querySelector('[data-md-component="comments"]');
-  const existingIframe = contentArea.querySelector('iframe[src*="utteranc.es"]');
+  const existingIframe = document.querySelector('iframe[src*="utteranc.es"]');
 
   if (materialComments || existingIframe) {
-    // 若存在我们旧的容器但本页已有评论（主题或现存 iframe），移除旧容器以防空容器占位
-    const stale = document.getElementById('utterances-comment');
-    if (stale && (materialComments || existingIframe)) {
-      // 仅当不是我们自己刚刚渲染的 iframe 时清理
-      const iframeInsideStale = stale.querySelector('iframe[src*="utteranc.es"]');
-      if (!iframeInsideStale) stale.remove();
-    }
+    // 清理我们旧的占位容器，交给已有的评论实现
+    document.querySelectorAll('#utterances-comment').forEach(n => n.remove());
     return;
   }
 
@@ -160,8 +173,9 @@ initComments();
 // 适配 MkDocs Material 的 Instant Navigation：每次文档切换后重新挂载评论
 if (window.document$ && typeof window.document$.subscribe === 'function') {
   window.document$.subscribe(() => {
-    // 延迟以等待主题内置评论（若启用）先完成挂载
-    setTimeout(setupComments, 120);
+    // 每次页面切换先清理再挂载，延迟等待内置评论完成
+    cleanupAndDedupe();
+    setTimeout(setupComments, 200);
   });
 }
 
