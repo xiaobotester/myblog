@@ -197,3 +197,81 @@ DELETE /索引名称
 
 ---
 
+## 🔄 Update By Query
+
+### 示例场景
+
+假设我们有以下筛选条件：
+- securityType 必须在 [1, 2, 3, 4, 5, 6, 7, 8] 中。
+- status 必须等于 "active"。
+- priority 必须大于 10。
+
+同时，我们希望更新以下字段：
+- 将 field1 设置为 "new_value1"。
+- 将 field2 设置为 "new_value2"。
+- 将 timestamp 设置为当前时间。
+
+### Update By Query 示例
+
+以下是一个完整的请求示例：
+
+```json
+POST /my_index/_update_by_query
+{
+  "script": {
+    "source": """
+      // 更新字段的逻辑
+      ctx._source.field1 = 'new_value1';
+      ctx._source.field2 = 'new_value2';
+      ctx._source.timestamp = new Date().toISOString(); // 设置为当前时间
+    """,
+    "lang": "painless"
+  },
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "terms": {
+            "securityType": [1, 2, 3, 4, 5, 6, 7, 8]
+          }
+        },
+        {
+          "term": {
+            "status.keyword": {
+              "value": "active"
+            }
+          }
+        },
+        {
+          "range": {
+            "priority": {
+              "gt": 10
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+### 说明
+
+- **bool 查询**：
+  - must：表示所有条件必须同时满足。
+  - terms 查询：用于匹配 securityType 字段值在 [1, 2, 3, 4, 5, 6, 7, 8] 中的文档。
+  - term 查询：用于匹配 status 字段值为 "active" 的文档。注意，如果 status 是 text 类型字段，需要使用 .keyword 后缀。
+  - range 查询：用于匹配 priority 字段值大于 10 的文档。
+
+- **script 部分**：
+  - 更新 field1 和 field2 为指定的新值。
+  - 使用 new Date().toISOString() 设置 timestamp 为当前时间的 ISO 格式。
+
+### 注意事项
+
+- **字段类型**：确保字段类型与查询条件匹配。例如，status 如果是 text 类型，需要使用 .keyword 后缀。
+- **性能**：如果数据量较大，更新操作可能会消耗较多资源。可以通过设置 size 参数来分批更新，或者调整集群的资源分配。
+- **测试**：在实际应用中，建议先在少量数据上测试更新逻辑，确保其符合预期。
+
+---
+

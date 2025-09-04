@@ -94,7 +94,7 @@ markdown_extensions:
   - attr_list  # 支持HTML属性列表
   - md_in_html  # 支持HTML中的Markdown
   - toc:  # 目录配置
-      permalink: true  # 为标题添加永久链接
+      permalink: false  # 不显示标题永久链接图标
 
 # 插件配置
 plugins:

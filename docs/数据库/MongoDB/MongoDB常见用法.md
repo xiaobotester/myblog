@@ -1,9 +1,42 @@
-# MongoDB常见用法
+## MongoDB 数据迁移脚本笔记
+将`equity`表中`regionId`为`5`的数据的`quoteId`提取出来，并插入到`broker_info_hk`表中，同时添加一些额外的字段。
 
+```javascript
+// 连接到MongoDB数据库
+use security_master; // 替换为你的数据库名称
+
+// 扫描equity表，获取regionId为5的数据
+var equityData = db.equity.find({regionId: 5});
+
+// 遍历查询结果，提取quoteId并插入到broker_info_hk表中
+equityData.forEach(function(doc) {
+    var quoteId = doc.quoteId; // 提取quoteId
+    // 插入到broker_info_hk表中
+    db.broker_info_hk.insertOne({
+        quoteId: quoteId,
+        type: "JP_EQUITY",
+        tradingLimitation: NumberInt(1),
+        brokerRegionId: 2,
+        riskUpdateTime: new ISODate(),
+        riskVersion: "2025-08-14",
+        createTime: new ISODate(),
+        updateTime: new ISODate()
+    });
+});
+
+print("数据插入完成！");
+注意事项
+数据库名称：请将security_master替换为你的实际数据库名称。
+数据重复性：如果broker_info_hk表中已经存在相同的quoteId，可能会导致重复数据。建议在插入前进行检查，或者在broker_info_hk表上设置唯一索引。
+时间字段：ISODate()会自动获取当前时间，确保时间字段的准确性。
+性能优化：如果数据量较大，建议分批处理，避免长时间占用数据库资源。
+备份数据：在运行脚本之前，建议备份相关数据，以防意外情况导致数据丢失。
+权限检查：确保你有足够的权限在目标数据库中执行find和insertOne操作。
+ 
+```
 
 ## 修改数据
 
- 
 ```
 update方法：该方法已被弃用，建议使用新的方法 updateOne()、updateMany() 或者 bulkWrite() 来代替。
 db.yourCollectionName.update({}, {$unset: {字段名: ""}},{multi: true});
